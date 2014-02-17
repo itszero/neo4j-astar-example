@@ -1,0 +1,8 @@
+#!/bin/sh
+cp build/libs/neo4j-astar*.jar /usr/local/Cellar/neo4j/1.9.5/libexec/plugins/
+neo4j restart
+sleep 10
+
+#curl -v http://0:7474/z/astar/ball
+curl -v http://0:7474/z/astar/bindex
+curl -v http://0:7474/z/astar/br

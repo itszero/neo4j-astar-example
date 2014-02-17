@@ -1,0 +1,39 @@
+apply plugin: 'scala'
+apply plugin: 'idea'
+
+repositories {
+  mavenCentral()
+  maven() { url = "http://sourceforge.net/projects/jsi/files/m2_repo" }
+}
+
+ext {
+  neo4jVersion = "1.9.3"
+}
+
+sourceCompatibility = 1.6
+
+version = "1.0.0-SNAPSHOT"
+
+configurations {
+  deps
+}
+
+dependencies {
+  compile group: 'org.neo4j', name: 'neo4j', version: neo4jVersion
+  compile group: 'org.neo4j', name: 'neo4j-kernel', version: neo4jVersion
+  compile group: 'org.neo4j', name: 'server-api', version: neo4jVersion
+  compile 'net.liftweb:lift-json_2.10:2.5'
+  compile 'org.apache.cxf:cxf-rt-frontend-jaxrs:2.7.0'
+  compile 'net.sourceforge.jsi:jsi:1.0.0'
+
+  deps 'net.liftweb:lift-json_2.10:2.5'
+  deps 'net.sourceforge.jsi:jsi:1.0.0'
+}
+
+jar {
+  from configurations.deps.collect { it.isDirectory() ? it : zipTree(it) }
+}
+
+tasks.withType(ScalaCompile) {
+  scalaCompileOptions.useAnt = false
+}
