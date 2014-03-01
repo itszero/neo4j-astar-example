@@ -10,7 +10,7 @@ web services. It was done for a class project, so the code did not focus on the
 security issues (as you can see, the import function actually take a path on
 the server and open it.)
 
-I stumbled on lots of stones and quirks when I writing these codes. I hope by
+I stumbled on lots of stones and quirks when I was writing these codes. I hope by
 opening the project it could help people to get onboard easier.
 
 ## License
